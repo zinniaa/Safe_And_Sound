@@ -130,6 +130,7 @@
             app:cardElevation="6dp"
             app:cardCornerRadius="12dp"
             android:layout_margin="12dp"
+            android:onClick="ToSOS"
 
             >
 
@@ -167,6 +168,7 @@
             app:cardElevation="6dp"
             app:cardCornerRadius="12dp"
             android:layout_margin="12dp"
+            android:onClick="ToAlarm"
 
             >
 
