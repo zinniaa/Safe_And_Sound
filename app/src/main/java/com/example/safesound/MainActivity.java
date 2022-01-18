@@ -75,11 +75,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ToAlarm(View v){
-        Intent i = new Intent(getApplicationContext(), FakeCall.class);
+        Intent i = new Intent(getApplicationContext(), Alarm.class);
         startActivity(i);
     }
     public void ToSOS(View v){
-        Intent i = new Intent(getApplicationContext(), FakeCall.class);
+        Intent i = new Intent(getApplicationContext(), SOS.class);
         startActivity(i);
     }
 
