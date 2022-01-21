@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Safe &amp; Sound</string>
+    <string name="sos_emergency_text">Emergency Situation?Press the power button quickly three times to send a quick alert along with you location to your emergency contacts</string>
+    <string name="attach_audio_and_video">Attach Audio and Video?</string>
 </resources>
