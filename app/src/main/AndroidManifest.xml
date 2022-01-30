@@ -36,6 +36,8 @@
         <activity android:name=".FakeCall"/>
         <activity android:name=".Alarm"/>
         <activity android:name=".SOS"/>
+        <activity android:name=".Login"/>
+        <activity android:name=".Signup"/>
     </application>
 
 </manifest>
