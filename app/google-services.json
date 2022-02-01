@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "390412081552",
+    "project_id": "safeandsound-33424",
+    "storage_bucket": "safeandsound-33424.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:390412081552:android:b2fe120f3491e949a57b15",
+        "android_client_info": {
+          "package_name": "com.example.safesound"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "390412081552-tpvp82mgoia5140bsspqlok8100ppnmh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZyfMAvjjgPIA5JIPIGXOcEXwvevPWN_I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "390412081552-tpvp82mgoia5140bsspqlok8100ppnmh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
