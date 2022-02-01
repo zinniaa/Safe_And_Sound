@@ -22,13 +22,13 @@
                 app:showAsAction="never"/>
 
             <item
-                android:id="@+id/item4"
+                android:id="@+id/item3"
                 android:icon="@drawable/how_to_use"
                 android:title="How to Use"
                 app:showAsAction="never"/>
 
             <item
-                android:id="@+id/item3"
+                android:id="@+id/item4"
                 android:icon="@drawable/settings"
                 android:title="Settings"
                 app:showAsAction="never"/>

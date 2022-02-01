@@ -9,8 +9,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
+        mAuth = FirebaseAuth.getInstance();
 
 
         //ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#612897"));
@@ -27,6 +32,16 @@ public class MainActivity extends AppCompatActivity {
         //actionBar.setDisplayHomeAsUpEnabled(true);
         //actionBar.setHomeAsUpIndicator(R.drawable.applogo);
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser == null){
+            Intent i = new Intent(getApplicationContext(), Login.class);
+            startActivity(i);
+        }
     }
 
     @Override
@@ -40,24 +55,55 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
             case R.id.item1:
-                Toast.makeText(getApplicationContext(), "Item 1 Selected", Toast.LENGTH_LONG).show();
+                ToEmergencyContacts();
                 return true;
             case R.id.item2:
-                Toast.makeText(getApplicationContext(), "Item 2 Selected", Toast.LENGTH_LONG).show();
+                toMyProfile();
                 return true;
             case R.id.item3:
-                Toast.makeText(getApplicationContext(), "Item 3 Selected", Toast.LENGTH_LONG).show();
+                toHowToUse();
                 return true;
             case R.id.item4:
-                Toast.makeText(getApplicationContext(), "Item 4 Selected", Toast.LENGTH_LONG).show();
+                toSettings();
                 return true;
             case R.id.item5:
-                Toast.makeText(getApplicationContext(), "Item 5 Selected", Toast.LENGTH_LONG).show();
+                logout();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    private void toSettings() {
+        Intent i = new Intent(getApplicationContext(), Settings.class);
+        startActivity(i);
+    }
+
+    private void toHowToUse() {
+        Intent i = new Intent(getApplicationContext(), HowToUse.class);
+        startActivity(i);
+    }
+
+
+    private void toMyProfile() {
+        Intent i = new Intent(getApplicationContext(), MyProfile.class);
+        startActivity(i);
+
+    }
+
+
+    private void logout() {
+        FirebaseAuth.getInstance().signOut();
+        Intent i = new Intent(getApplicationContext(), Login.class);
+        startActivity(i);
+        finish();
+
+    }
+    private void ToEmergencyContacts() {
+        Intent i = new Intent(getApplicationContext(), EmergencyContacts.class);
+        startActivity(i);
+    }
+
 
     public void ToHelplineNumbers(View v){
         Intent i = new Intent(getApplicationContext(), HelplineNumbers.class);

@@ -38,6 +38,10 @@
         <activity android:name=".SOS"/>
         <activity android:name=".Login"/>
         <activity android:name=".Signup"/>
+        <activity android:name=".HowToUse"/>
+        <activity android:name=".MyProfile"/>
+        <activity android:name=".Settings"/>
+        <activity android:name=".EmergencyContacts"/>
     </application>
 
 </manifest>
