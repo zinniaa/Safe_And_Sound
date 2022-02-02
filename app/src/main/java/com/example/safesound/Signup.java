@@ -30,8 +30,9 @@ public class Signup extends AppCompatActivity {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            Intent i = new Intent(getApplicationContext(), Login.class);
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(i);
+            finish();
         }
     }
 
@@ -55,6 +56,7 @@ public class Signup extends AppCompatActivity {
             public void onClick(View v) {
                 String m_email=email.getText().toString().trim();
                 String m_pass=pass.getText().toString().trim();
+                String m_rpass=rep_pass.getText().toString().trim();
 
                 if(TextUtils.isEmpty(m_email)){
                     email.setError("Email is Required");
@@ -73,14 +75,22 @@ public class Signup extends AppCompatActivity {
                     return;
 
                 }
+                if(!m_pass.equals(m_rpass)){
+                    rep_pass.setError("Passwords do not Match!");
+                    rep_pass.requestFocus();
+                    return;
+
+                }
                 progress_bar.setVisibility(View.VISIBLE);
 
                 mAuth.createUserWithEmailAndPassword(m_email,m_pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                          if(task.isSuccessful()){
+                             progress_bar.setVisibility(View.GONE);
                              Toast.makeText(getApplicationContext(),"New Account Created",Toast.LENGTH_SHORT).show();
                              startActivity(new Intent(getApplicationContext(), Login.class));
+                             finish();
 
                          }
                          else{
