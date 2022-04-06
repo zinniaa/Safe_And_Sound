@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Signup extends AppCompatActivity {
 
@@ -57,6 +58,8 @@ public class Signup extends AppCompatActivity {
                 String m_email=email.getText().toString().trim();
                 String m_pass=pass.getText().toString().trim();
                 String m_rpass=rep_pass.getText().toString().trim();
+                String m_name=name.getText().toString();
+                String m_phone=phone.getText().toString();
 
                 if(TextUtils.isEmpty(m_email)){
                     email.setError("Email is Required");
@@ -87,10 +90,26 @@ public class Signup extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                          if(task.isSuccessful()){
-                             progress_bar.setVisibility(View.GONE);
-                             Toast.makeText(getApplicationContext(),"New Account Created",Toast.LENGTH_SHORT).show();
-                             startActivity(new Intent(getApplicationContext(), Login.class));
-                             finish();
+
+                             User user=new User(m_name,m_email,m_phone);
+                             FirebaseDatabase.getInstance().getReference("Users")
+                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                 @Override
+                                 public void onComplete(@NonNull Task<Void> task) {
+                                     if (task.isSuccessful()){
+                                         progress_bar.setVisibility(View.GONE);
+                                         Toast.makeText(getApplicationContext(),"New Account Created",Toast.LENGTH_SHORT).show();
+                                         startActivity(new Intent(getApplicationContext(), Login.class));
+                                         finish();
+                                     }
+                                     else{
+                                         Toast.makeText(getApplicationContext(),"Registration Error"+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                                         progress_bar.setVisibility(View.GONE);
+                                     }
+                                 }
+                             });
+
 
                          }
                          else{
