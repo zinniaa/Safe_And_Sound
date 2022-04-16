@@ -1,8 +1,10 @@
 package com.example.safesound;
 
+import java.util.Dictionary;
+import java.util.Hashtable;
+
 public class User {
     public String name, email, phone;
-
     public User() {
     }
 
@@ -11,4 +13,6 @@ public class User {
         this.email = email;
         this.phone = phone;
     }
+
+
 }
