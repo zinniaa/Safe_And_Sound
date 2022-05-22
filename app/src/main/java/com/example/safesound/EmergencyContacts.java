@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,7 @@ public class EmergencyContacts extends AppCompatActivity {
     private FirebaseAuth mAuth;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    private ProgressBar progressBar;
     private ArrayList<Contacts> contactModelArrayList;
     private ContactAdapter contactAdapter;
     private RecyclerView idRVContacts;
@@ -41,11 +43,13 @@ public class EmergencyContacts extends AppCompatActivity {
         setContentView(R.layout.activity_emergency_contacts);
 
         idRVContacts=findViewById(R.id.idRVContacts);
+        progressBar= findViewById(R.id.progress_bar);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
         contactModelArrayList = new ArrayList<>();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Contacts");
+        progressBar.setVisibility(View.VISIBLE);
 
         b1=findViewById(R.id.button_add_emergency);
         b1.setOnClickListener(new View.OnClickListener() {
@@ -69,23 +73,27 @@ public class EmergencyContacts extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 contactModelArrayList.add(snapshot.getValue(Contacts.class));
+                progressBar.setVisibility(View.GONE);
                 contactAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                progressBar.setVisibility(View.GONE);
                 contactAdapter.notifyDataSetChanged();
 
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                progressBar.setVisibility(View.GONE);
                 contactAdapter.notifyDataSetChanged();
 
             }
 
             @Override
             public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                progressBar.setVisibility(View.GONE);
                 contactAdapter.notifyDataSetChanged();
 
             }
