@@ -23,6 +23,15 @@ public class Contacts implements Parcelable {
         phone = in.readString();
     }
 
+    public String getContactName(){
+        return name;
+    }
+
+    public String getContactPhone(){
+        return phone;
+    }
+
+
     public static final Creator<Contacts> CREATOR = new Creator<Contacts>() {
         @Override
         public Contacts createFromParcel(Parcel in) {
